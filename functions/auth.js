@@ -16,12 +16,17 @@ const getToken = (code) => {
   );
 };
 
-module.exports = (req, res) => {
-  getToken(req.query.code)
-    .then((response) => {
-      res.status(200).json({ token: response.data.access_token });
-    })
-    .catch((err) => {
-      res.status(500).json({ message: err.message });
-    });
+exports.handler = async function (event) {
+  try {
+    const response = await getToken(event.queryStringParameters.code);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ token: response.data.access_token }),
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: err.message }),
+    };
+  }
 };

@@ -18,7 +18,7 @@ const App = ({ location }) => {
   }, [location]);
 
   const signIn = () => {
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=repo`;
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=repo}`;
   };
 
   return (
